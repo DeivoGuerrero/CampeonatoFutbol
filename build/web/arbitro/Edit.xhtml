@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ArbitroEditDlg" widgetVar="ArbitroEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditArbitroTitle}">
+            <h:form id="ArbitroEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{arbitroController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditArbitroLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{arbitroController.selected.id}" title="#{bundle.EditArbitroTitle_id}" required="true" requiredMessage="#{bundle.EditArbitroRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditArbitroLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{arbitroController.selected.nombre}" title="#{bundle.EditArbitroTitle_nombre}" required="true" requiredMessage="#{bundle.EditArbitroRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditArbitroLabel_apellido}" for="apellido" />
+                        <p:inputText id="apellido" value="#{arbitroController.selected.apellido}" title="#{bundle.EditArbitroTitle_apellido}" required="true" requiredMessage="#{bundle.EditArbitroRequiredMessage_apellido}"/>
+                        <p:outputLabel value="#{bundle.EditArbitroLabel_fechaNacimiento}" for="fechaNacimiento" />
+                        <p:calendar id="fechaNacimiento" pattern="MM/dd/yyyy" value="#{arbitroController.selected.fechaNacimiento}" title="#{bundle.EditArbitroTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.EditArbitroRequiredMessage_fechaNacimiento}" showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{arbitroController.update}" value="#{bundle.Save}" update="display,:ArbitroListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ArbitroEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ArbitroEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

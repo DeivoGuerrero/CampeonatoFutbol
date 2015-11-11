@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PartidoEditDlg" widgetVar="PartidoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPartidoTitle}">
+            <h:form id="PartidoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{partidoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{partidoController.selected.id}" title="#{bundle.EditPartidoTitle_id}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_fehcaHora}" for="fehcaHora" />
+                        <p:calendar id="fehcaHora" pattern="MM/dd/yyyy HH:mm:ss" value="#{partidoController.selected.fehcaHora}" title="#{bundle.EditPartidoTitle_fehcaHora}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_fehcaHora}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_idCancha}" for="idCancha" />
+                        <p:inputText id="idCancha" value="#{partidoController.selected.idCancha}" title="#{bundle.EditPartidoTitle_idCancha}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_idCancha}"/>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_idEquipoLocal}" for="idEquipoLocal" />
+                        <p:inputText id="idEquipoLocal" value="#{partidoController.selected.idEquipoLocal}" title="#{bundle.EditPartidoTitle_idEquipoLocal}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_idEquipoLocal}"/>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_idEquipoVisitante}" for="idEquipoVisitante" />
+                        <p:inputText id="idEquipoVisitante" value="#{partidoController.selected.idEquipoVisitante}" title="#{bundle.EditPartidoTitle_idEquipoVisitante}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_idEquipoVisitante}"/>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_idArbitroCentral}" for="idArbitroCentral" />
+                        <p:inputText id="idArbitroCentral" value="#{partidoController.selected.idArbitroCentral}" title="#{bundle.EditPartidoTitle_idArbitroCentral}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_idArbitroCentral}"/>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_idArbitroL1}" for="idArbitroL1" />
+                        <p:inputText id="idArbitroL1" value="#{partidoController.selected.idArbitroL1}" title="#{bundle.EditPartidoTitle_idArbitroL1}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_idArbitroL1}"/>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_idArbitroL2}" for="idArbitroL2" />
+                        <p:inputText id="idArbitroL2" value="#{partidoController.selected.idArbitroL2}" title="#{bundle.EditPartidoTitle_idArbitroL2}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_idArbitroL2}"/>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_idArbitroAux}" for="idArbitroAux" />
+                        <p:inputText id="idArbitroAux" value="#{partidoController.selected.idArbitroAux}" title="#{bundle.EditPartidoTitle_idArbitroAux}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_idArbitroAux}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{partidoController.update}" value="#{bundle.Save}" update="display,:PartidoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PartidoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PartidoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
